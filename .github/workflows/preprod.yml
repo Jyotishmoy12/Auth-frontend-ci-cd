@@ -1,4 +1,4 @@
-name: "CI CD Pipeline for Auth Frontend Prepord"
+name: "CI CD Pipeline for Auth Frontend Preprod"
 
 on:
   workflow_dispatch:
