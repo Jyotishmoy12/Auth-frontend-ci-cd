@@ -4,8 +4,9 @@ on:
   workflow_dispatch:
 
 jobs:
-  ci:
+  cicd:
     runs-on: ubuntu-latest
+    environment: preprod
     steps:
       - name: "Setup Nodejs"
         uses: actions/setup-node@v4
@@ -20,9 +21,15 @@ jobs:
 
       - name: "Install dependencies"
         run: npm install
+
+      - name: "Install vercel cli"
+        run: npm install --g vercel
       - name: "List directories"
         run: ls
       - name: "Run eslint"
         run: npm run lint
       - name: "Build"
         run: npm run build
+
+      - name: "Deploy"
+        run: vercel --prod --token ${{ secrets.TEMP_TOKEN }} --confirm --name=auth-frontend-preprod
